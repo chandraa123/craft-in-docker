@@ -1,0 +1,28 @@
+image: docker:18.09
+
+services:
+  - docker:18.05-dind
+
+stages:
+- build
+
+variables:
+  DOCKER_DRIVER: overlay2
+  PHP_CONTAINER_RELEASE_IMAGE: 822603042387.dkr.ecr.eu-west-1.amazonaws.com/php-craft/php:latest
+  NGINX_CONTAINER_RELEASE_IMAGE: 822603042387.dkr.ecr.eu-west-1.amazonaws.com/nginx-craft/nginx:latest
+
+before_script:
+  - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 822603042387.dkr.ecr.eu-west-1.amazonaws.com
+  - apk update
+  - apk upgrade
+  - apk add python python-dev py2-pip build-base curl gettext
+  - pip install docker-compose==1.23.2
+
+build:
+  stage: build
+  script:
+    - docker-compose run --rm buildchain yarn run build
+    - docker build -f docker-config/php/Dockerfile --pull -t $PHP_CONTAINER_RELEASE_IMAGE .
+    - docker build -f docker-config/nginx/Dockerfile --pull -t $NGINX_CONTAINER_RELEASE_IMAGE .
+    - docker push $PHP_CONTAINER_RELEASE_IMAGE
+    - docker push $NGINX_CONTAINER_RELEASE_IMAGE
