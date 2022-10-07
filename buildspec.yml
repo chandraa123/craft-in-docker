@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 822603042387.dkr.ecr.eu-west-1.amazonaws.com)
+      - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 822603042387.dkr.ecr.eu-west-1.amazonaws.com
       - DOCKER_DRIVER= overlay2
       - REPOSITORY_URI-PHP=822603042387.dkr.ecr.eu-west-1.amazonaws.com/php-craft
       - REPOSITORY_URI-NGINX=822603042387.dkr.ecr.eu-west-1.amazonaws.com/nginx-craft
