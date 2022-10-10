@@ -17,11 +17,11 @@ phases:
       - apk add python python-dev py2-pip build-base curl gettext
       - pip install docker-compose==1.23.2
       - docker-compose run --rm buildchain yarn run build
-      - docker build -f docker-config/php/Dockerfile --pull -t $REPOSITORY_URI-PHP .
-      - docker build -f docker-config/nginx/Dockerfile --pull -t $REPOSITORY_URI-NGINX .
+      - docker build -f docker-config/php/Dockerfile --pull -t 822603042387.dkr.ecr.eu-west-1.amazonaws.com/php-craft
+      - docker build -f docker-config/nginx/Dockerfile --pull -t 822603042387.dkr.ecr.eu-west-1.amazonaws.com/nginx-craft
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI-PHP:latest
-      - docker push $REPOSITORY_URI-NGINX:latest
+      - docker push 822603042387.dkr.ecr.eu-west-1.amazonaws.com/php-craft:latest
+      - docker push 822603042387.dkr.ecr.eu-west-1.amazonaws.com/nginx-craft:latest
