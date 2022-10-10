@@ -12,7 +12,6 @@ phases:
 
   build:
     commands:
-      - yum add python python-dev py2-pip build-base curl gettext
       - docker-compose run --rm buildchain yarn run build
       - docker build -f docker-config/php/Dockerfile --pull -t php-craft .
       - docker build -f docker-config/nginx/Dockerfile --pull -t nginx-craft .
