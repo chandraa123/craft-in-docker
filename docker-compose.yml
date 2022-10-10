@@ -25,6 +25,7 @@ services:
           - ./src/templates:/var/www/html/templates
           - ./src/web:/var/www/html/web
   buildchain:
+      image: 822603042387.dkr.ecr.eu-west-1.amazonaws.com/buildchain:latest
       build:
         context: .
         dockerfile: ./docker-config/buildchain/Dockerfile
