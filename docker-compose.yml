@@ -8,7 +8,7 @@ services:
           - 80:80
       volumes:
           - cpresources:/var/www/html/web/cpresources
-          - ./src/web:/var/www/html/web
+          - cpvol:/var/www/html/web
 
   php:
       build:
@@ -64,3 +64,4 @@ volumes:
   db-data:
   cpresources:
   node-modules:
+  cpvol:

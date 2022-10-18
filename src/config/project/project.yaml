@@ -1,4 +1,4 @@
-dateModified: 1665141661
+dateModified: 1665580659
 email:
   fromEmail: chandra.mohnaty@conso4s.com
   fromName: craft
@@ -16,7 +16,12 @@ meta:
     6bf39a1a-5b7c-4cb0-a4f2-b0fd23c37bd1: craft # craft
     66b735ed-463d-4ce4-8d1a-5191b6351488: Common # Common
     45948ebe-2cb8-409c-b32f-3c7eb49cd487: craft # craft
-    d507ef2a-d47c-45c1-9299-9875796b5954: local
+    d507ef2a-d47c-45c1-9299-9875796b5954: local # local
+plugins:
+  aws-s3:
+    edition: standard
+    enabled: true
+    schemaVersion: '2.0'
 system:
   edition: solo
   live: true

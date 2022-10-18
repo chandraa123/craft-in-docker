@@ -1,4 +1,7 @@
-FROM nginx:1.15
+FROM ubuntu/nginx
 
-COPY ./docker-config/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --chown=www-data:www-data ./src/web /var/www/html/web
+WORKDIR /home/ubuntu/craft-in-docker/docker-config/nginx/
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+WORKDIR /home/ubuntu/craft-in-docker/src/
+COPY --chown=www-data:www-data web/* /var/www/html/web/
